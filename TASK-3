@@ -1,0 +1,29 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import load_iris
+
+# Load dataset
+iris = load_iris(as_frame=True)
+df = iris.frame
+
+# 1. Summary Statistics
+print("Summary Statistics:")
+print(df.describe())
+
+# 2. Distribution Plots
+df.hist(figsize=(10, 8))
+plt.tight_layout()
+plt.show()
+
+# 3. Correlation Heatmap
+plt.figure(figsize=(8, 6))
+sns.heatmap(df.corr(numeric_only=True),
+            annot=True,
+            cmap="coolwarm")
+plt.title("Correlation Heatmap")
+plt.show()
+
+# 4. Pairplot
+sns.pairplot(df, hue="target")
+plt.show()
